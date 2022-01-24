@@ -38,7 +38,7 @@ function Titulo(props) {
             <Tag>{props.children}</Tag>
             <style jsx>{`
         ${Tag} {
-            color: ${appConfig.theme.colors.neutrals[500]};
+            color: ${appConfig.theme.colors.neutrals[300]};
             font-size: 24px;
             font-weight: 600;
         }
@@ -64,7 +64,7 @@ function Titulo(props) {
   
   export default HomePage */
 export default function PaginaInicial() {
-    const username = 'peas';
+    const username = 'phenriquep00';
 
     return (
         <>
