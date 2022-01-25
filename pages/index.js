@@ -4,6 +4,16 @@ import { useRouter } from 'next/router';
 import appConfig from '../config.json'
 
 
+function UrlExists(url) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    if (http.status != 404)
+        return true;
+    else
+        return false;
+}
+
 function Titulo(props) {
     const Tag = props.tag;
     return (
@@ -39,6 +49,8 @@ export default function PaginaInicial() {
     // const username = 'phenriquep00';
     const [username, setUsername] = React.useState('')
     const roteamento = useRouter();
+    // todo: change default img
+    const [image, setImage] = React.useState('https://github.com/phenriq.png');
 
     return (
         <>
@@ -81,18 +93,7 @@ export default function PaginaInicial() {
                         <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[300] }}>
                             {appConfig.name}
                         </Text>
-
-                        {/* /* <input
-                         type="text"
-                         value = {username}
-                         onChange={function handler(event) {
-                             // localização do valor do input no DOM react
-                            const valor = event.target.value
-                            // Atualização do valor pelo novo valor 
-                            setUsername(valor)
-                         }
-
-                        ></input> */} 
+ 
                         <TextField
                             value = {username}
                             onChange={function handler(event) {
@@ -100,6 +101,12 @@ export default function PaginaInicial() {
                                const valor = event.target.value
                                // Atualização do valor pelo novo valor 
                                setUsername(valor)
+                               if (valor.length >= 2){
+                                   setImage(`https://github.com/${valor}.png`)
+                               } else {
+                                   setImage('https://github.com/phenriq.png')
+                               }
+                               console.log(image)
                             }}
                             fullWidth
                             textFieldColors={{
@@ -127,6 +134,7 @@ export default function PaginaInicial() {
 
 
                     {/* Photo Area */}
+                    
                     <Box
                         styleSheet={{
                             display: 'flex',
@@ -147,7 +155,7 @@ export default function PaginaInicial() {
                                 borderRadius: '50%',
                                 marginBottom: '16px',
                             }}
-                            src={`https://github.com/${username}.png`}
+                            src={`${image}`}
                         />
                         <Text
                             variant="body4"
