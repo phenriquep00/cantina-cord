@@ -162,6 +162,30 @@ export default function ChatPage() {
                 handleNovaMensagem(':sticker: ' + sticker);
               }}
             />
+            <Button
+              styleSheet={{
+                borderRadius: '50%',
+                padding: '0 3px 0 0',
+                minWidth: '50px',
+                minHeight: '50px',
+                fontSize: '20px',
+                marginBottom: '8px',
+                marginLeft: '4px',
+                lineHeight: '0',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: appConfig.theme.colors.neutrals[300],
+                hover: {
+                  filter: 'grayscale(0)',
+                }
+              }}
+              label='✔️'
+              onClick={() => {
+                handleNovaMensagem(mensagem);
+                
+              }}
+            />
           </Box>
         </Box>
       </Box>
